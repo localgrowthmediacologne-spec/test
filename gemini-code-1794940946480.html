@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Schutz vor Suchmaschinen-Indexierung (Demo-Version) -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Design-Entwurf · RM Glas- und Gebäudereinigung Köln</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        .page-view {
+            animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dezentes Licht-Raster im Hero */
+        .hero-pattern {
+            background-image: radial-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+            background-size: 26px 26px;
+        }
+
+        /* Laufband für Leistungsschwerpunkte */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-600 selection:text-white flex flex-col min-h-screen">
+
+    <!-- 1. Gut sichtbarer Demo-Hinweis-Balken ganz oben -->
+    <div class="bg-amber-400 text-zinc-950 text-xs md:text-sm font-bold py-2.5 px-4 text-center border-b border-amber-500 shadow-xs z-50">
+        🎨 UNVERBINDLICHER DESIGN-ENTWURF · Demoseite erstellt von Local Growth Media (Keine aktive Unternehmenswebsite)
+    </div>
+
+    <!-- 2. Top-Kontaktleiste (Direktwahl & E-Mail sofort sichtbar) -->
+    <div class="bg-slate-950 text-slate-200 text-xs font-medium py-2 px-4 border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <span class="text-slate-300">✨ Sauberkeit beginnt mit einem Anruf · Ihr Reinigungspartner in Köln &amp; NRW</span>
+            <div class="flex items-center gap-4">
+                <a href="tel:+491771894705" class="text-sky-400 hover:text-sky-300 font-bold flex items-center gap-1.5">
+                    <span>📞 +49 177 1894705</span>
+                </a>
+                <a href="mailto:info@service-rm.de" class="hidden sm:inline-flex text-slate-300 hover:text-white font-medium items-center gap-1.5">
+                    <span>✉️ info@service-rm.de</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Hauptnavigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+            <!-- RM Marken-Logo -->
+            <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3 text-left group cursor-pointer">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-slate-900 to-sky-700 text-white flex items-center justify-center font-extrabold text-lg tracking-tight shadow-sm group-hover:scale-[1.02] transition shrink-0">
+                    RM
+                </div>
+                <div>
+                    <span class="text-sm md:text-base font-extrabold text-slate-900 block leading-tight tracking-tight">
+                        RM Glas- &amp; Gebäudereinigung
+                    </span>
+                    <span class="text-[11px] font-semibold text-sky-700 block">
+                        Köln · Bonn · Düsseldorf · NRW
+                    </span>
+                </div>
+            </button>
+
+            <!-- Desktop-Navigation -->
+            <nav class="hidden lg:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200/80">
+                <button type="button" onclick="navigateTo('home')" data-nav="home" class="nav-btn px-4 py-2 rounded-lg text-sm font-bold transition bg-white text-slate-900 shadow-2xs cursor-pointer">
+                    Startseite
+                </button>
+                <button type="button" onclick="navigateTo('leistungen')" data-nav="leistungen" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition cursor-pointer">
+                    Leistungen
+                </button>
+                <button type="button" onclick="navigateTo('ueber-uns')" data-nav="ueber-uns" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition cursor-pointer">
+                    Über uns &amp; Team
+                </button>
+                <button type="button" onclick="navigateTo('kontakt')" data-nav="kontakt" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition cursor-pointer">
+                    Kontakt
+                </button>
+            </nav>
+
+            <!-- Direkter Telefon-Button im Header -->
+            <a href="tel:+491771894705" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs md:text-sm px-4 py-2.5 rounded-xl transition shadow-xs flex items-center gap-1.5">
+                <span>📞</span>
+                <span>0177 1894705</span>
+            </a>
+        </div>
+
+        <!-- Mobile Unterseiten-Leiste -->
+        <div class="lg:hidden border-t border-slate-200 bg-slate-50 px-2 py-1.5 flex justify-around text-xs font-semibold overflow-x-auto">
+            <button type="button" onclick="navigateTo('home')" data-nav-mob="home" class="mob-nav-btn px-3 py-1.5 rounded-lg text-sky-700 bg-white shadow-2xs">Start</button>
+            <button type="button" onclick="navigateTo('leistungen')" data-nav-mob="leistungen" class="mob-nav-btn px-3 py-1.5 rounded-lg text-slate-600">Leistungen</button>
+            <button type="button" onclick="navigateTo('ueber-uns')" data-nav-mob="ueber-uns" class="mob-nav-btn px-3 py-1.5 rounded-lg text-slate-600">Über uns</button>
+            <button type="button" onclick="navigateTo('kontakt')" data-nav-mob="kontakt" class="mob-nav-btn px-3 py-1.5 rounded-lg text-slate-600">Kontakt</button>
+        </div>
+    </header>
+
+    <!-- HAUPTINHALT -->
+    <main class="flex-1">
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 1: STARTSEITE (MIT DIREKTER KONTAKT-BOX OBEN)  -->
+        <!-- ========================================================= -->
+        <div id="view-home" class="page-view">
+
+            <!-- HERO SECTION: Links Vertrauens-Pitch, Rechts SOFORT SICHTBARE Kontakt- & Schnell-Anfrage-Box -->
+            <section class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-sky-950 text-white pt-10 pb-14 md:pt-14 md:pb-16 px-4 overflow-hidden hero-pattern">
+                <!-- Dezente Kölner Skyline-Silhouette im Hintergrund -->
+                <svg class="absolute bottom-0 inset-x-0 w-full h-28 text-white/[0.03] pointer-events-none" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M0,120 L0,95 L80,95 L80,70 L110,70 L110,95 L180,95 L180,55 L192,20 L204,55 L212,20 L224,55 L224,95 L320,95 Q420,45 520,95 L620,95 L620,65 L680,65 L680,95 L820,95 Q920,50 1020,95 L1200,95 L1200,120 Z"/>
+                </svg>
+
+                <div class="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+                    <!-- Linke Spalte: Positionierung & Vertrauenssignale -->
+                    <div class="lg:col-span-6 pt-2">
+                        <!-- Google 5.0 Sterne Badge -->
+                        <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-xs border border-white/15 rounded-full px-4 py-1.5 text-xs font-semibold mb-5">
+                            <span class="text-amber-400 tracking-tight text-sm">★★★★★</span>
+                            <span class="text-white font-bold">5,0</span>
+                            <span class="text-slate-300">aus 24 Google-Rezensionen · Köln &amp; NRW</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.12] mb-5">
+                            Professionelle <span class="text-sky-400">Gebäude- &amp; Glasreinigung</span> in Köln.
+                        </h1>
+
+                        <p class="text-slate-300 text-base md:text-lg leading-relaxed mb-7">
+                            Zuverlässig, gründlich und termingerecht: Ob regelmäßige Büro- und Praxisreinigung oder streifenfreie Glasreinigung – Inhaber <strong>Raffaele Giuseppe Magazzu</strong> und sein 10-köpfiges Team sorgen für makellose Sauberkeit.
+                        </p>
+
+                        <!-- Direkte Vorteile als kompakte Checkliste -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 text-sm">
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-emerald-400 font-bold">✓</span>
+                                <span class="text-slate-200 font-medium">Persönlicher Ansprechpartner</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-emerald-400 font-bold">✓</span>
+                                <span class="text-slate-200 font-medium">HWK Köln &amp; BG BAU geprüft</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-emerald-400 font-bold">✓</span>
+                                <span class="text-slate-200 font-medium">Flexible Intervalle &amp; Einmalaufträge</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-emerald-400 font-bold">✓</span>
+                                <span class="text-slate-200 font-medium">Vollständig haftpflichtversichert</span>
+                            </div>
+                        </div>
+
+                        <!-- Sofort-Anruf & E-Mail ohne Umwege -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <a href="tel:+491771894705" class="bg-white text-slate-950 hover:bg-sky-50 font-extrabold px-5 py-3.5 rounded-xl text-sm transition shadow-md inline-flex items-center gap-2">
+                                <span>📞 Direkt anrufen: 0177 1894705</span>
+                            </a>
+                            <a href="mailto:info@service-rm.de" class="bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-5 py-3.5 rounded-xl text-sm transition">
+                                ✉️ info@service-rm.de
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rechte Spalte: DIREKT SICHTBARE KONTAKT- & SCHNELL-ANFRAGE-KARTE (Kein Klick nötig zum Öffnen!) -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white text-slate-900 rounded-3xl p-5 sm:p-7 shadow-2xl border border-slate-200/80">
+                            <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100">
+                                <div>
+                                    <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-sky-700">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        Direktkontakt &amp; Sofort-Angebot
+                                    </span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">
+                                        Unverbindlich anfragen – Antwort am selben Tag
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <!-- Direkt sichtbare Schnell-Auswahl + Live-Preisindikation -->
+                            <form id="heroDirectForm" class="space-y-4">
+                                <input type="hidden" name="access_key" value="DEIN_WEB3FORMS_KEY">
+                                <input type="hidden" name="subject" value="Neue Direkt-Anfrage - RM Gebäudereinigung">
+                                <input type="hidden" id="heroCalcSummary" name="kalkulation">
+
+                                <!-- 1. Reinigungsart als direkte Schnellwahl-Buttons -->
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Was dürfen wir für Sie reinigen?</label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <button type="button" onclick="setHeroService('Büro- & Praxisreinigung', 1.4, this)" class="hero-srv-btn border-2 border-sky-600 bg-sky-50 text-sky-950 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">🏢 Büro / Praxis</span>
+                                        </button>
+                                        <button type="button" onclick="setHeroService('Glas- & Fensterreinigung', 1.2, this)" class="hero-srv-btn border border-slate-200 bg-slate-50 text-slate-700 hover:border-sky-400 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">🪟 Glas / Fenster</span>
+                                        </button>
+                                        <button type="button" onclick="setHeroService('Gebäude- & Grundreinigung', 1.8, this)" class="hero-srv-btn border border-slate-200 bg-slate-50 text-slate-700 hover:border-sky-400 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">✨ Grundreinigung</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Flächen-Slider mit Live-Richtpreis -->
+                                <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5">
+                                    <div class="flex items-center justify-between text-xs mb-1.5">
+                                        <span class="font-bold text-slate-700">Ungefähre Fläche: <strong id="heroAreaVal" class="text-sky-700">150 m²</strong></span>
+                                        <span class="font-extrabold text-slate-900 bg-white border border-slate-200 px-2.5 py-0.5 rounded-lg">
+                                            Richtwert: <span id="heroLivePrice" class="text-sky-700">ca. 210 €</span>
+                                        </span>
+                                    </div>
+                                    <input type="range" id="heroAreaSlider" min="40" max="800" step="10" value="150" oninput="updateHeroEstimate()" class="w-full accent-sky-600 cursor-pointer">
+                                    <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                                        <span>40 m² (Klein)</span>
+                                        <span>400 m² (Mittel)</span>
+                                        <span>800+ m² (Großobjekt)</span>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Direkt sichtbare Kontaktfelder (ohne Extra-Schritt) -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Ihr Name / Firma *</label>
+                                        <input type="text" name="name" required placeholder="Max Mustermann" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Telefon oder E-Mail *</label>
+                                        <input type="text" name="contact" required placeholder="0177... oder E-Mail" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:bg-white">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Ort / Wunschintervall (optional)</label>
+                                    <input type="text" name="details" placeholder="z.B. Köln-Ehrenfeld, 2x wöchentlich oder einmalig" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:bg-white">
+                                </div>
+
+                                <button type="submit" id="heroSubmitBtn" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-extrabold py-3.5 rounded-xl text-sm transition shadow-md cursor-pointer">
+                                    Kostenloses Angebot anfordern →
+                                </button>
+
+                                <p class="text-[11px] text-slate-400 text-center">
+                                    Kein Callcenter · Direkter Rückruf durch Inhaber Raffaele Giuseppe Magazzu
+                                </p>
+                            </form>
+
+                            <div id="heroSuccessBox" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-900 p-4 rounded-2xl text-sm text-center space-y-2">
+                                <div class="font-extrabold">✅ Anfrage erfolgreich übermittelt!</div>
+                                <p class="text-xs">Vielen Dank! Wir melden uns kurzfristig telefonisch oder per E-Mail mit Ihrem individuellen Angebot bei Ihnen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Laufendes Keyword-Band (wie auf service-rm.de) -->
+            <div class="bg-sky-700 text-white py-3 overflow-hidden border-y border-sky-800">
+                <div class="animate-marquee text-xs font-extrabold uppercase tracking-widest flex items-center gap-8">
+                    <span>BÜROREINIGUNG KÖLN</span><span>•</span>
+                    <span>TERMINGERECHT</span><span>•</span>
+                    <span>DISKRET &amp; ZUVERLÄSSIG</span><span>•</span>
+                    <span>GEWERBEKUNDEN</span><span>•</span>
+                    <span>FLEXIBLE INTERVALLE</span><span>•</span>
+                    <span>91 FIRMENKUNDEN</span><span>•</span>
+                    <span>18 JAHRE ERFAHRUNG</span><span>•</span>
+                    <span>5★ BEI GOOGLE</span><span>•</span>
+                    <span>KÖLN &amp; NRW</span><span>•</span>
+                    <!-- Duplikat für nahtlosen Loop -->
+                    <span>BÜROREINIGUNG KÖLN</span><span>•</span>
+                    <span>TERMINGERECHT</span><span>•</span>
+                    <span>DISKRET &amp; ZUVERLÄSSIG</span><span>•</span>
+                    <span>GEWERBEKUNDEN</span><span>•</span>
+                    <span>FLEXIBLE INTERVALLE</span><span>•</span>
+                    <span>91 FIRMENKUNDEN</span><span>•</span>
+                    <span>18 JAHRE ERFAHRUNG</span><span>•</span>
+                    <span>5★ BEI GOOGLE</span><span>•</span>
+                    <span>KÖLN &amp; NRW</span><span>•</span>
+                </div>
+            </div>
+
+            <!-- Zertifizierungs- & Vertrauens-Leiste -->
+            <section class="py-8 px-4 bg-white border-b border-slate-200">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                        Zertifiziert. Geprüft. Vertrauenswürdig.
+                    </span>
+                    <div class="flex flex-wrap justify-center gap-3 text-xs font-bold text-slate-700">
+                        <span class="bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl">🏛️ Handwerkskammer zu Köln</span>
+                        <span class="bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl">🛡️ BG BAU Mitglied</span>
+                        <span class="bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl">🏅 Handwerker des Vertrauens (HdV)</span>
+                        <span class="bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl">✅ EMR Zertifizierung</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ANIMIERTE ERFOLGSZÄHLER (Repariert & flüssig animiert wie gewünscht!) -->
+            <section id="countersSection" class="py-14 px-4 bg-slate-900 text-white border-b border-slate-800">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="text-sky-400 text-xs font-extrabold uppercase tracking-widest">Zahlen und Erfolge</span>
+                        <h2 class="text-2xl md:text-4xl font-extrabold mt-1">Zahlen, die für uns sprechen.</h2>
+                        <p class="text-slate-400 text-sm mt-2">
+                            Seit der Gründung 2022 vertrauen Unternehmen und Privatkunden in ganz NRW auf RM – gestützt auf über 18 Jahre Branchenerfahrung.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-sky-400 counter-num" data-target="300" data-suffix="+">0+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-slate-200 mt-2">Zufriedene Privatkunden</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-sky-400 counter-num" data-target="18" data-suffix="+">0+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-slate-200 mt-2">Jahre Erfahrung</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-sky-400 counter-num" data-target="91" data-suffix="+">0+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-slate-200 mt-2">Firmenkunden</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-sky-400 counter-num" data-target="9" data-suffix="">0</div>
+                            <div class="text-xs sm:text-sm font-semibold text-slate-200 mt-2">Städte in NRW</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unsere Leistungen im Überblick -->
+            <section class="py-16 px-4 bg-white border-b border-slate-200">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-sky-700 text-xs font-extrabold uppercase tracking-wider">Unsere Leistungen</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">
+                            Saubere Ergebnisse für Gewerbe &amp; Privat
+                        </h2>
+                        <p class="text-slate-600 text-sm mt-2">
+                            Ob regelmäßige Gebäudepflege oder professionelle Glasreinigung – wir arbeiten mit festen Teams und geprüften Reinigungsmitteln.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-sky-500 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-sky-600 text-white flex items-center justify-center text-lg mb-4">🏢</div>
+                                <h3 class="font-extrabold text-slate-900 text-base mb-2">Büro- &amp; Gebäudereinigung</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">Regelmäßige Unterhaltsreinigung für Büros, Empfangsbereiche, Kanzleien und Gewerbeobjekte in Köln.</p>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Büro- & Praxisreinigung', 1.4)" class="text-xs font-extrabold text-sky-700 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-sky-500 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-slate-900 text-sky-400 flex items-center justify-center text-lg mb-4">🪟</div>
+                                <h3 class="font-extrabold text-slate-900 text-base mb-2">Glas- &amp; Fensterreinigung</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">Streifenfreie Reinigung von Fenstern, Schaufenstern, Glasfassaden und Wintergärten – innen wie außen.</p>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Glas- & Fensterreinigung', 1.2)" class="text-xs font-extrabold text-sky-700 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-sky-500 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-sky-600 text-white flex items-center justify-center text-lg mb-4">🏥</div>
+                                <h3 class="font-extrabold text-slate-900 text-base mb-2">Praxisreinigung</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">Hygienisch einwandfreie Reinigung für Arztpraxen, Therapiezentren und medizinische Einrichtungen.</p>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Büro- & Praxisreinigung', 1.5)" class="text-xs font-extrabold text-sky-700 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between hover:border-sky-500 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-slate-900 text-sky-400 flex items-center justify-center text-lg mb-4">✨</div>
+                                <h3 class="font-extrabold text-slate-900 text-base mb-2">Grund- &amp; Sonderreinigung</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">Intensive Grundreinigung nach Renovierung, Mieterwechsel oder für schwer zugängliche Glasflächen.</p>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Gebäude- & Grundreinigung', 1.8)" class="text-xs font-extrabold text-sky-700 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Warum Unternehmen auf RM vertrauen + Inhaber-Profil -->
+            <section class="py-16 px-4 bg-slate-50 border-b border-slate-200">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <span class="text-sky-700 text-xs font-extrabold uppercase tracking-wider">Inhabergeführt · 18+ Jahre Branchenwissen</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                            Warum Unternehmen in Köln auf RM vertrauen
+                        </h2>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Seit über 18 Jahren kennt <strong>Raffaele Giuseppe Magazzu</strong> die Gebäudereinigung – und leitet heute ein eingespieltes Team von 10 geschulten Mitarbeitern in Köln und NRW. Für uns zählt nicht nur Sauberkeit, sondern Verlässlichkeit, Pünktlichkeit und ein fester persönlicher Ansprechpartner.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-sky-700">18+ Jahre</div>
+                                <div class="text-xs text-slate-600 mt-1">Persönliche Fach-Erfahrung</div>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-sky-700">10 Profis</div>
+                                <div class="text-xs text-slate-600 mt-1">Festes, geschultes Team</div>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-sky-700">5 Sprachen</div>
+                                <div class="text-xs text-slate-600 mt-1">DE · IT · EN · PT · BS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kundenstimmen-Karten -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-slate-900 text-sm">Michael Pütz</span>
+                                <span class="text-amber-500 text-xs font-bold">★★★★★ Google</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                „Wir sind absolut begeistert von RM. Unsere Fenster im Bürohaus sehen 1a aus — stets freundlich, pünktlich und ein super Preis-/Leistungsverhältnis.“
+                            </p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-slate-900 text-sm">Christopher Hoft · faco iMedia group GmbH</span>
+                                <span class="text-amber-500 text-xs font-bold">★★★★★ Google</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                „Professioneller Service mit perfekter Kommunikation und Pünktlichkeit. Wir sind happy euch als General-Dienstleister zu haben.“
+                            </p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-slate-900 text-sm">Top-Clean Köln</span>
+                                <span class="text-amber-500 text-xs font-bold">★★★★★ Google</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                „Die Jungs von RM putzen seit mehreren Jahren die Schaufenster unserer Filialen. Die Fenster sind immer blitzeblank — hier steht der Kunde noch an erster Stelle.“
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tätigkeitsgebiet & Interaktives FAQ -->
+            <section class="py-16 px-4 bg-white border-b border-slate-200">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="text-sky-700 text-xs font-extrabold uppercase tracking-wider">Tätigkeitsgebiet &amp; Häufige Fragen</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Von Köln aus in der gesamten Region</h2>
+                        <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs font-bold">
+                            <span class="bg-sky-50 text-sky-800 border border-sky-200 px-3 py-1 rounded-full">Köln</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Bonn</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Düsseldorf</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Leverkusen</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Bergisch Gladbach</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Hürth</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Frechen</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Bornheim</span>
+                            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Linz am Rhein</span>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Akkordeon -->
+                    <div class="space-y-3 max-w-3xl mx-auto">
+                        <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-slate-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer">
+                                <span>Bieten Sie auch Einmalreinigungen an?</span>
+                                <span class="text-sky-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-slate-600 leading-relaxed bg-white border-t border-slate-100">
+                                Ja, selbstverständlich. Neben regelmäßigen Unterhaltsreinigungen (wöchentlich, 14-tägig oder monatlich) übernehmen wir auch einmalige Glas-, Grund- oder Sonderreinigungen.
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-slate-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer">
+                                <span>Wie schnell erhalte ich ein Angebot?</span>
+                                <span class="text-sky-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-slate-600 leading-relaxed bg-white border-t border-slate-100">
+                                Nach Ihrer Anfrage über das Formular oder per Telefon melden wir uns in der Regel noch am selben Werktag bei Ihnen und erstellen ein transparentes, individuelles Angebot ohne versteckte Kosten.
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-slate-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer">
+                                <span>Sind Sie vollständig versichert und zertifiziert?</span>
+                                <span class="text-sky-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-slate-600 leading-relaxed bg-white border-t border-slate-100">
+                                Ja. Wir sind vollständig betriebshaftpflichtversichert, Mitglied der Handwerkskammer zu Köln sowie der BG BAU und als Handwerker des Vertrauens (HdV) zertifiziert.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIREKTER KONTAKT-ABSCHLUSS UNTEN (Ebenfalls sofort sichtbar ohne Extra-Klick!) -->
+            <section class="py-16 px-4 bg-gradient-to-br from-slate-900 to-sky-950 text-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="text-sky-400 text-xs font-extrabold uppercase tracking-wider">Bereit für sauberere Räume?</span>
+                        <h2 class="text-3xl font-extrabold leading-tight">
+                            Direkt Kontakt aufnehmen – ohne Wartezeit
+                        </h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Rufen Sie uns direkt an oder hinterlassen Sie kurz Ihre Nummer für einen schnellen Rückruf durch Raffaele Giuseppe Magazzu.
+                        </p>
+                        <div class="space-y-2 text-sm pt-2">
+                            <div>📍 <strong>Standort:</strong> Vogelsanger Straße 350f, 50827 Köln</div>
+                            <div>📞 <strong>Direktwahl:</strong> <a href="tel:+491771894705" class="text-sky-400 font-extrabold hover:underline">+49 177 1894705</a></div>
+                            <div>✉️ <strong>E-Mail:</strong> <a href="mailto:info@service-rm.de" class="text-sky-400 font-extrabold hover:underline">info@service-rm.de</a></div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-6 bg-white text-slate-900 rounded-2xl p-6 shadow-xl">
+                        <form id="bottomDirectForm" class="space-y-3">
+                            <div class="font-extrabold text-base text-slate-900 mb-1">Rückruf oder Angebot anfordern</div>
+                            <input type="text" required placeholder="Ihr Name / Unternehmen *" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+                            <input type="text" required placeholder="Telefonnummer oder E-Mail *" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-sky-600">
+                            <textarea rows="2" placeholder="Kurze Info (z.B. Büroreinigung in Köln, ca. 200 m²)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-sky-600"></textarea>
+                            <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-extrabold py-3 rounded-xl text-sm transition cursor-pointer">
+                                Jetzt absenden →
+                            </button>
+                        </form>
+                        <div id="bottomSuccess" class="hidden text-center py-4 text-emerald-700 font-bold text-sm">
+                            ✅ Vielen Dank! Wir melden uns umgehend bei Ihnen.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 2: LEISTUNGEN                                  -->
+        <!-- ========================================================= -->
+        <div id="view-leistungen" class="page-view hidden">
+            <section class="py-14 px-4 bg-slate-900 text-white border-b border-slate-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-sky-400 text-xs font-extrabold uppercase tracking-widest">Spezialisiert auf Reinigung</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Unsere Reinigungsleistungen</h1>
+                    <p class="text-slate-300 text-base max-w-2xl leading-relaxed">
+                        Kein Bauchladen, sondern volle Konzentration auf professionelle Gebäudepflege und Glasreinigung für Firmen- und Privatkunden in Köln und NRW.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-2">🏢 Büro- &amp; Gewerbereinigung</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Gründliche Reinigung von Arbeitsplätzen, Konferenzräumen, Küchenzeilen und Sanitärbereichen zu Ihren Wunschzeiten.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">Direkt auf der Startseite kalkulieren →</button>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-2">🪟 Glas- &amp; Schaufensterreinigung</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Streifenfreie Pflege von Glasfassaden, Ladenlokalen, Wintergärten und Rahmenkonstruktionen inkl. schwer zugänglicher Flächen.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">Direkt auf der Startseite kalkulieren →</button>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-2">🏥 Arztpraxen &amp; Kanzleien</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Diskrete und hygienische Pflege sensibler Praxis- und Empfangsräume mit geschultem Stammpersonal.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">Direkt auf der Startseite kalkulieren →</button>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-2">🏠 Treppenhaus- &amp; Grundreinigung</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Zuverlässige Pflege von Wohnanlagen, Eingangsbereichen sowie intensive Grundreinigungen nach Bau- oder Renovierungsarbeiten.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">Direkt auf der Startseite kalkulieren →</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 3: ÜBER UNS & TEAM                             -->
+        <!-- ========================================================= -->
+        <div id="view-ueber-uns" class="page-view hidden">
+            <section class="py-14 px-4 bg-slate-900 text-white border-b border-slate-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-sky-400 text-xs font-extrabold uppercase tracking-widest">Inhabergeführt in Köln</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Über RM Glas- und Gebäudereinigung</h1>
+                    <p class="text-slate-300 text-base max-w-2xl leading-relaxed">
+                        Persönlich, verbindlich und mehrsprachig auf Augenhöhe: Lernen Sie den Betrieb hinter über 300 zufriedenen Privat- und 91 Firmenkunden kennen.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-extrabold text-slate-900">Raffaele Giuseppe Magazzu &amp; Team</h2>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Mit über 18 Jahren persönlicher Erfahrung in der Reinigungsbranche gründete Raffaele Giuseppe Magazzu 2022 RM Glas- und Gebäudereinigung in Köln. Heute ist ein 10-köpfiges, fest eingespieltes Team täglich in Köln, Bonn, Düsseldorf und dem gesamten Umland im Einsatz.
+                        </p>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Unser Team kommuniziert fließend in <strong>5 Sprachen</strong> (Deutsch, Italienisch, Englisch, Portugiesisch und Bosnisch) und steht für direkte Absprachen ohne anonyme Callcenter.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-3">
+                        <div class="font-extrabold text-slate-900">Ausgewählte Referenzkunden aus Köln &amp; Region:</div>
+                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-700">
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">Lufthansa City Center</span>
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">Ruby Hotels</span>
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">Opus Cologne</span>
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">faco iMedia group</span>
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">Schulte Architekten</span>
+                            <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg">Tradewind Pictures</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 4: KONTAKT & RECHTLICHES                       -->
+        <!-- ========================================================= -->
+        <div id="view-kontakt" class="page-view hidden">
+            <section class="py-14 px-4 bg-slate-900 text-white border-b border-slate-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-sky-400 text-xs font-extrabold uppercase tracking-widest">Köln-Ehrenfeld / Bickendorf</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Kontakt &amp; Standort</h1>
+                    <p class="text-slate-300 text-base max-w-2xl leading-relaxed">
+                        Erreichen Sie uns direkt telefonisch, per E-Mail oder über unser Sofort-Formular.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl space-y-4">
+                        <h2 class="text-xl font-extrabold text-slate-900">RM Glas- und Gebäudereinigung</h2>
+                        <ul class="space-y-2.5 text-sm text-slate-700">
+                            <li>👤 <strong>Inhaber:</strong> Raffaele Giuseppe Magazzu</li>
+                            <li>📍 <strong>Adresse:</strong> Vogelsanger Straße 350f, 50827 Köln</li>
+                            <li>📞 <strong>Telefon:</strong> <a href="tel:+491771894705" class="text-sky-700 font-extrabold hover:underline">+49 177 1894705</a></li>
+                            <li>✉️ <strong>E-Mail:</strong> <a href="mailto:info@service-rm.de" class="text-sky-700 font-extrabold hover:underline">info@service-rm.de</a></li>
+                        </ul>
+                        <a href="tel:+491771894705" class="block w-full text-center bg-sky-600 hover:bg-sky-700 text-white font-bold py-3.5 rounded-xl text-sm transition">
+                            Jetzt anrufen: +49 177 1894705
+                        </a>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 p-7 rounded-2xl space-y-3">
+                        <span class="inline-block bg-amber-100 text-amber-900 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                            Rechtliches-Vorschau
+                        </span>
+                        <h2 class="text-xl font-extrabold text-slate-900">Impressum &amp; Datenschutz</h2>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Bei Live-Schaltung werden hier Ihre vollständigen Pflichtangaben gemäß § 5 DDG hinterlegt:
+                        </p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 space-y-1">
+                            <div><strong>RM Glas- und Gebäudereinigung</strong></div>
+                            <div>Inhaber: Raffaele Giuseppe Magazzu</div>
+                            <div>Vogelsanger Straße 350f, 50827 Köln</div>
+                            <div>Zuständige Kammer: Handwerkskammer zu Köln</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-slate-950 text-slate-300 text-sm border-t border-slate-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <div class="text-lg font-extrabold text-white">RM Glas- und Gebäudereinigung</div>
+                <div class="text-xs text-slate-400 mt-1">Vogelsanger Straße 350f, 50827 Köln · +49 177 1894705 · info@service-rm.de</div>
+            </div>
+            <div class="flex flex-wrap gap-4 text-xs font-semibold">
+                <button type="button" onclick="navigateTo('home')" class="hover:text-white transition cursor-pointer">Startseite</button>
+                <button type="button" onclick="navigateTo('leistungen')" class="hover:text-white transition cursor-pointer">Leistungen</button>
+                <button type="button" onclick="navigateTo('ueber-uns')" class="hover:text-white transition cursor-pointer">Über uns</button>
+                <button type="button" onclick="navigateTo('kontakt')" class="hover:text-white transition cursor-pointer">Kontakt &amp; Impressum</button>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
+            <span>Unverbindlicher Design-Entwurf erstellt von <strong>Local Growth Media</strong> · Köln</span>
+            <span>Demoseite – nicht öffentlich indexiert</span>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. Multi-Page Navigation --- */
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('view-' + pageId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === pageId) {
+                    btn.classList.add('bg-white', 'text-slate-900', 'shadow-2xs', 'font-bold');
+                    btn.classList.remove('text-slate-600', 'font-medium');
+                } else {
+                    btn.classList.remove('bg-white', 'text-slate-900', 'shadow-2xs', 'font-bold');
+                    btn.classList.add('text-slate-600', 'font-medium');
+                }
+            });
+
+            document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+                if (btn.dataset.navMob === pageId) {
+                    btn.classList.add('text-sky-700', 'bg-white', 'shadow-2xs');
+                    btn.classList.remove('text-slate-600');
+                } else {
+                    btn.classList.remove('text-sky-700', 'bg-white', 'shadow-2xs');
+                    btn.classList.add('text-slate-600');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* --- 2. Direkt sichtbare Hero-Kontakt- & Live-Preis-Box --- */
+        let heroState = {
+            service: 'Büro- & Praxisreinigung',
+            rate: 1.4
+        };
+
+        function setHeroService(name, rate, btn) {
+            heroState.service = name;
+            heroState.rate = rate;
+
+            document.querySelectorAll('.hero-srv-btn').forEach(b => {
+                b.className = 'hero-srv-btn border border-slate-200 bg-slate-50 text-slate-700 hover:border-sky-400 rounded-xl py-2 px-2 text-center transition cursor-pointer';
+            });
+            btn.className = 'hero-srv-btn border-2 border-sky-600 bg-sky-50 text-sky-950 rounded-xl py-2 px-2 text-center transition cursor-pointer';
+
+            updateHeroEstimate();
+        }
+
+        function presetHeroAndScroll(name, rate) {
+            heroState.service = name;
+            heroState.rate = rate;
+            updateHeroEstimate();
+        }
+
+        function updateHeroEstimate() {
+            const area = parseInt(document.getElementById('heroAreaSlider').value, 10);
+            document.getElementById('heroAreaVal').innerText = area + ' m²';
+            const estimate = Math.max(79, Math.round((area * heroState.rate) / 5) * 5);
+            document.getElementById('heroLivePrice').innerText = 'ca. ' + estimate + ' €';
+            document.getElementById('heroCalcSummary').value = `${heroState.service} | ${area} m² | Richtwert: ca. ${estimate} €`;
+        }
+        updateHeroEstimate();
+
+        document.getElementById('heroDirectForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('heroSubmitBtn');
+            btn.innerText = 'Wird gesendet...';
+            btn.disabled = true;
+
+            try {
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(new FormData(this)))
+                });
+            } catch (err) {}
+
+            this.classList.add('hidden');
+            document.getElementById('heroSuccessBox').classList.remove('hidden');
+        });
+
+        document.getElementById('bottomDirectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            document.getElementById('bottomSuccess').classList.remove('hidden');
+        });
+
+        /* --- 3. Flüssig animierte Counter (IntersectionObserver + Fallback) --- */
+        let countersAnimated = false;
+
+        function animateCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+
+            document.querySelectorAll('.counter-num').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = 1600;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(eased * target);
+                    el.innerText = current + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.innerText = target + suffix;
+                    }
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        const counterSec = document.getElementById('countersSection');
+        if (counterSec) counterObserver.observe(counterSec);
+        // Sicherheits-Fallback nach 2,5 Sekunden
+        setTimeout(animateCounters, 2500);
+
+        /* --- 4. FAQ Akkordeon --- */
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('span:last-child');
+            const isHidden = content.classList.contains('hidden');
+            content.classList.toggle('hidden');
+            icon.innerText = isHidden ? '−' : '+';
+        }
+    </script>
+</body>
+</html>
